@@ -191,7 +191,6 @@ const Routes: React.FC = () => {
                     component={CustomerSection}
                   />
                   <SectionRoute
-                    permissions={[PermissionEnum.MANAGE_USERS]}
                     path="/influencer"
                     component={InfluencerSection}
                     />

@@ -13,7 +13,7 @@ import {
   SortPage,
   FilterPageProps
 } from "@saleor/types";
-import { CustomerListUrlSortField } from "@saleor/customers/urls";
+import { InfluencerListUrlSortField } from "@saleor/influencer/urls";
 import FilterBar from "@saleor/components/FilterBar";
 import CustomerList from "../CustomerList/CustomerList";
 import { ListCustomers_customers_edges_node } from "../../types/ListCustomers";
@@ -27,9 +27,9 @@ export interface CustomerListPageProps
   extends PageListProps,
     ListActions,
     FilterPageProps<CustomerFilterKeys, CustomerListFilterOpts>,
-    SortPage<CustomerListUrlSortField>,
+    SortPage<InfluencerListUrlSortField>,
     TabPageProps {
-  customers: ListCustomers_customers_edges_node[];
+    influencers: ListCustomers_customers_edges_node[];
 }
 
 const CustomerListPage: React.FC<CustomerListPageProps> = ({
@@ -53,10 +53,10 @@ const CustomerListPage: React.FC<CustomerListPageProps> = ({
 
   return (
     <Container>
-      <PageHeader title={intl.formatMessage(sectionNames.customers)}>
+      <PageHeader title={intl.formatMessage(sectionNames.influencer)}>
         <Button color="primary" variant="contained" onClick={onAdd}>
           <FormattedMessage
-            defaultMessage="Create customer"
+            defaultMessage="Create Influencer"
             description="button"
           />
         </Button>
@@ -64,7 +64,7 @@ const CustomerListPage: React.FC<CustomerListPageProps> = ({
       <Card>
         <FilterBar
           allTabLabel={intl.formatMessage({
-            defaultMessage: "All Customers",
+            defaultMessage: "All Influencer",
             description: "tab name"
           })}
           currencySymbol={currencySymbol}
@@ -72,7 +72,7 @@ const CustomerListPage: React.FC<CustomerListPageProps> = ({
           filterStructure={structure}
           initialSearch={initialSearch}
           searchPlaceholder={intl.formatMessage({
-            defaultMessage: "Search Customer"
+            defaultMessage: "Search Influencer"
           })}
           tabs={tabs}
           onAll={onAll}

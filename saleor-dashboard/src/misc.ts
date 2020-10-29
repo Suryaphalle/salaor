@@ -281,6 +281,7 @@ interface User {
 }
 
 export function getUserName(user?: User, returnEmail?: boolean) {
+  console.log(user)
   return user && (user.email || (user.firstName && user.lastName))
     ? user.firstName && user.lastName
       ? [user.firstName, user.lastName].join(" ")

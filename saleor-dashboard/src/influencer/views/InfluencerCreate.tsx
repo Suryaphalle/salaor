@@ -34,7 +34,7 @@ export const CustomerCreate: React.FC<{}> = () => {
             <>
               <WindowTitle
                 title={intl.formatMessage({
-                  defaultMessage: "Create customer",
+                  defaultMessage: "Create Influencer",
                   description: "window title"
                 })}
               />

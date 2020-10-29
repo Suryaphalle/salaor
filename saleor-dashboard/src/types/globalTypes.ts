@@ -964,6 +964,13 @@ export interface CustomerFilterInput {
   placedOrders?: DateRangeInput | null;
   search?: string | null;
 }
+export interface InfluencerFilterInput {
+  dateJoined?: DateRangeInput | null;
+  // moneySpent?: PriceRangeInput | null;
+  // numberOfOrders?: IntRangeInput | null;
+  // placedOrders?: DateRangeInput | null;
+  search?: string | null;
+}
 
 export interface CustomerInput {
   defaultBillingAddress?: AddressInput | null;

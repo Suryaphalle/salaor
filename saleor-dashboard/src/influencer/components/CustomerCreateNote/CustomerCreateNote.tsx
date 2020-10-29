@@ -40,7 +40,7 @@ const CustomerCreateNote: React.FC<CustomerCreateNoteProps> = ({
       />
       <CardContent>
         <Typography>
-          <FormattedMessage defaultMessage="Enter any extra infotmation regarding this customer." />
+          <FormattedMessage defaultMessage="Enter any extra infotmation regarding this influencer." />
         </Typography>
         <FormSpacer />
         <TextField

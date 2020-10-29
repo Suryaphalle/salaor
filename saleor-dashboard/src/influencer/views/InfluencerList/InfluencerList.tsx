@@ -59,7 +59,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ params }) => {
     params.ids
   );
   const { updateListSettings, settings } = useListSettings(
-    ListViews.CUSTOMER_LIST
+    ListViews.INFLUENCER_LIST
   );
   const intl = useIntl();
   const shop = useShop();
@@ -126,7 +126,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ params }) => {
   };
 
   const { loadNextPage, loadPreviousPage, pageInfo } = paginate(
-    maybe(() => data.customers.pageInfo),
+    maybe(() => data.influencers.pageInfo),
     paginationState,
     params
   );
@@ -161,7 +161,7 @@ export const CustomerList: React.FC<CustomerListProps> = ({ params }) => {
             onTabDelete={() => openModal("delete-search")}
             onTabSave={() => openModal("save-search")}
             tabs={tabs.map(tab => tab.name)}
-            customers={maybe(() => data.customers.edges.map(edge => edge.node))}
+            influencers={maybe(() => data.influencers.edges.map(edge => edge.node))}
             settings={settings}
             disabled={loading}
             pageInfo={pageInfo}
@@ -204,13 +204,13 @@ export const CustomerList: React.FC<CustomerListProps> = ({ params }) => {
             }
             variant="delete"
             title={intl.formatMessage({
-              defaultMessage: "Delete Customers",
+              defaultMessage: "Delete Influencer",
               description: "dialog header"
             })}
           >
             <DialogContentText>
               <FormattedMessage
-                defaultMessage="{counter,plural,one{Are you sure you want to delete this customer?} other{Are you sure you want to delete {displayQuantity} customers?}}"
+                defaultMessage="{counter,plural,one{Are you sure you want to delete this Influencer?} other{Are you sure you want to delete {displayQuantity} customers?}}"
                 values={{
                   counter: maybe(() => params.ids.length),
                   displayQuantity: (

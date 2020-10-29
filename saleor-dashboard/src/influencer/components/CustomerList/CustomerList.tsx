@@ -13,7 +13,7 @@ import TableHead from "@saleor/components/TableHead";
 import TablePagination from "@saleor/components/TablePagination";
 import { getUserName, maybe, renderCollection } from "@saleor/misc";
 import { ListActions, ListProps, SortPage } from "@saleor/types";
-import { CustomerListUrlSortField } from "@saleor/customers/urls";
+import { InfluencerListUrlSortField } from "@saleor/influencer/urls";
 import TableCellHeader from "@saleor/components/TableCellHeader";
 import { getArrowDirection } from "@saleor/utils/sort";
 import { ListCustomers_customers_edges_node } from "../../types/ListCustomers";
@@ -44,17 +44,17 @@ const useStyles = makeStyles(
 export interface CustomerListProps
   extends ListProps,
     ListActions,
-    SortPage<CustomerListUrlSortField> {
-  customers: ListCustomers_customers_edges_node[];
+    SortPage<InfluencerListUrlSortField> {
+  influencers: ListCustomers_customers_edges_node[];
 }
-
+    
 const numberOfColumns = 4;
-
+    
 const CustomerList: React.FC<CustomerListProps> = props => {
   const {
     settings,
     disabled,
-    customers,
+    influencers,
     pageInfo,
     onNextPage,
     onPreviousPage,
@@ -70,52 +70,52 @@ const CustomerList: React.FC<CustomerListProps> = props => {
   } = props;
 
   const classes = useStyles(props);
-
+  console.log(influencers)
   return (
     <ResponsiveTable>
       <TableHead
         colSpan={numberOfColumns}
         selected={selected}
         disabled={disabled}
-        items={customers}
+        items={influencers}
         toggleAll={toggleAll}
         toolbar={toolbar}
       >
         <TableCellHeader
           direction={
-            sort.sort === CustomerListUrlSortField.name
+            sort.sort === InfluencerListUrlSortField.name
               ? getArrowDirection(sort.asc)
               : undefined
           }
           arrowPosition="right"
-          onClick={() => onSort(CustomerListUrlSortField.name)}
+          onClick={() => onSort(InfluencerListUrlSortField.name)}
           className={classes.colName}
         >
-          <FormattedMessage defaultMessage="Customer Name" />
+          <FormattedMessage defaultMessage="Influencer Name" />
         </TableCellHeader>
         <TableCellHeader
           direction={
-            sort.sort === CustomerListUrlSortField.email
+            sort.sort === InfluencerListUrlSortField.email
               ? getArrowDirection(sort.asc)
               : undefined
           }
-          onClick={() => onSort(CustomerListUrlSortField.email)}
+          onClick={() => onSort(InfluencerListUrlSortField.email)}
           className={classes.colEmail}
         >
-          <FormattedMessage defaultMessage="Customer Email" />
+          <FormattedMessage defaultMessage="Influencer Email" />
         </TableCellHeader>
-        <TableCellHeader
+        {/* <TableCellHeader
           direction={
-            sort.sort === CustomerListUrlSortField.orders
+            sort.sort === InfluencerListUrlSortField.orders
               ? getArrowDirection(sort.asc)
               : undefined
           }
           textAlign="center"
-          onClick={() => onSort(CustomerListUrlSortField.orders)}
+          onClick={() => onSort(InfluencerListUrlSortField.orders)}
           className={classes.colOrders}
         >
           <FormattedMessage defaultMessage="No. of Orders" />
-        </TableCellHeader>
+        </TableCellHeader> */}
       </TableHead>
       <TableFooter>
         <TableRow>
@@ -134,7 +134,7 @@ const CustomerList: React.FC<CustomerListProps> = props => {
       </TableFooter>
       <TableBody>
         {renderCollection(
-          customers,
+          influencers,
           customer => {
             const isSelected = customer ? isChecked(customer.id) : false;
 
@@ -160,19 +160,19 @@ const CustomerList: React.FC<CustomerListProps> = props => {
                 <TableCell className={classes.colEmail}>
                   {maybe<React.ReactNode>(() => customer.email, <Skeleton />)}
                 </TableCell>
-                <TableCell className={classes.colOrders}>
+                {/* <TableCell className={classes.colOrders}>
                   {maybe<React.ReactNode>(
                     () => customer.orders.totalCount,
                     <Skeleton />
                   )}
-                </TableCell>
+                </TableCell> */}
               </TableRow>
             );
           },
           () => (
             <TableRow>
               <TableCell colSpan={numberOfColumns}>
-                <FormattedMessage defaultMessage="No customers found" />
+                <FormattedMessage defaultMessage="No influencer found" />
               </TableCell>
             </TableRow>
           )

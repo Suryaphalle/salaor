@@ -10,6 +10,7 @@ import translationIcon from "@assets/images/menu-translation-icon.svg";
 import { categoryListUrl } from "../../categories/urls";
 import { collectionListUrl } from "../../collections/urls";
 import { customerListUrl } from "../../customers/urls";
+import { influencerListUrl } from "../../influencer/urls";
 import { orderDraftListUrl, orderListUrl } from "../../orders/urls";
 import { productListUrl } from "../../products/urls";
 import { saleListUrl, voucherListUrl } from "../../discounts/urls";
@@ -76,14 +77,24 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
       label: intl.formatMessage(sectionNames.orders),
       permission: PermissionEnum.MANAGE_ORDERS
     },
-    {
-      ariaLabel: "customers",
+    {  
+      ariaLabel: "Users",
+      children: [
+        {
+          ariaLabel: "customers",
+          label: intl.formatMessage(sectionNames.customers),
+          url: customerListUrl()
+        },
+        {
+          ariaLabel: "influencer",
+          label: intl.formatMessage(sectionNames.influencer),
+          url: influencerListUrl()
+        }
+      ],
       icon: customerIcon,
-      label: intl.formatMessage(sectionNames.customers),
-      permission: PermissionEnum.MANAGE_USERS,
-      url: customerListUrl()
+      label: intl.formatMessage(commonMessages.users),
+      permission: PermissionEnum.MANAGE_USERS
     },
-
     {
       ariaLabel: "discounts",
       children: [

@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CustomerFilterInput, UserSortingInput } from "./../../types/globalTypes";
+import { InfluencerFilterInput, UserSortingInput } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: ListCustomers
@@ -42,7 +42,7 @@ export interface ListCustomers_customers {
 }
 
 export interface ListCustomers {
-  customers: ListCustomers_customers | null;
+  influencers: ListCustomers_customers | null;
 }
 
 export interface ListCustomersVariables {
@@ -50,6 +50,6 @@ export interface ListCustomersVariables {
   before?: string | null;
   first?: number | null;
   last?: number | null;
-  filter?: CustomerFilterInput | null;
+  filter?: InfluencerFilterInput | null;
   sort?: UserSortingInput | null;
 }

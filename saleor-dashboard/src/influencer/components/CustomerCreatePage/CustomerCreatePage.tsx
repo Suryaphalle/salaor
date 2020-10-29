@@ -143,11 +143,11 @@ const CustomerCreatePage: React.FC<CustomerCreatePageProps> = ({
         return (
           <Container>
             <AppHeader onBack={onBack}>
-              <FormattedMessage {...sectionNames.customers} />
+              <FormattedMessage {...sectionNames.influencer} />
             </AppHeader>
             <PageHeader
               title={intl.formatMessage({
-                defaultMessage: "Create Customer",
+                defaultMessage: "Create Influencer",
                 description: "page header"
               })}
             />

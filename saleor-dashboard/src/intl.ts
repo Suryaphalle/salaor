@@ -16,6 +16,9 @@ export const commonMessages = defineMessages({
   discounts: {
     defaultMessage: "Discounts"
   },
+  users: {
+    defaultMessage: "Users"
+  },
   drafts: {
     defaultMessage: "Drafts"
   },
@@ -185,6 +188,10 @@ export const sectionNames = defineMessages({
     defaultMessage: "Orders",
     description: "orders section name"
   },
+  influencer: {
+    defaultMessage: "Influencer",
+    description: "customers section name"
+  },
   pages: {
     defaultMessage: "Pages",
     description: "pages section name"
@@ -241,10 +248,7 @@ export const sectionNames = defineMessages({
     defaultMessage: "Warehouses",
     description: "warehouses section name"
   },
-  influencer: {
-    defaultMessage: "Influencer",
-    description: "customers section name"
-  },
+  
   webhooks: {
     defaultMessage: "Webhooks",
     description: "webhooks section name"

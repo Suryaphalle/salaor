@@ -55,7 +55,7 @@ const CustomerCreateAddress: React.FC<CustomerCreateAddressProps> = props => {
       />
       <CardContent className={classes.overflow}>
         <Typography>
-          <FormattedMessage defaultMessage="The primary address of this customer." />
+          <FormattedMessage defaultMessage="The primary address of this influencer." />
         </Typography>
         <FormSpacer />
         <AddressEdit

@@ -10,8 +10,8 @@ export function getSortQueryField(
       return UserSortField.EMAIL;
     case InfluencerListUrlSortField.name:
       return UserSortField.LAST_NAME;
-    case InfluencerListUrlSortField.orders:
-      return UserSortField.ORDER_COUNT;
+    // case InfluencerListUrlSortField.orders:
+    //   return UserSortField.ORDER_COUNT;
     default:
       return undefined;
   }
