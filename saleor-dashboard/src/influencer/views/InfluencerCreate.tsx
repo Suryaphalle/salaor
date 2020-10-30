@@ -20,7 +20,7 @@ export const CustomerCreate: React.FC<{}> = () => {
     if (data.customerCreate.errors.length === 0) {
       notify({
         text: intl.formatMessage({
-          defaultMessage: "Customer created"
+          defaultMessage: "Influencer created"
         })
       });
       navigate(influencerUrl(data.customerCreate.user.id));
@@ -53,6 +53,7 @@ export const CustomerCreate: React.FC<{}> = () => {
                         email: formData.email,
                         firstName: formData.customerFirstName,
                         lastName: formData.customerLastName,
+                        isInfluencer:formData.isInfluencer,
                         note: formData.note
                       }
                     }

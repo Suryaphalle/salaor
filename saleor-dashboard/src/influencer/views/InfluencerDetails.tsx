@@ -25,19 +25,19 @@ import {
   InfluencerUrlQueryParams
 } from "../urls";
 
-interface CustomerDetailsViewProps {
+interface InfluencerDetailsViewProps {
   id: string;
   params: InfluencerUrlQueryParams;
 }
 
-export const CustomerDetailsView: React.FC<CustomerDetailsViewProps> = ({
+export const InfluencerDetailsView: React.FC<InfluencerDetailsViewProps> = ({
   id,
   params
 }) => {
   const navigate = useNavigator();
   const notify = useNotifier();
   const intl = useIntl();
-
+  
   const handleCustomerUpdateSuccess = (data: UpdateCustomer) => {
     if (data.customerUpdate.errors.length === 0) {
       notify({
@@ -49,7 +49,7 @@ export const CustomerDetailsView: React.FC<CustomerDetailsViewProps> = ({
     if (data.customerDelete.errors.length === 0) {
       notify({
         text: intl.formatMessage({
-          defaultMessage: "Customer Removed"
+          defaultMessage: "Influencer Removed"
         })
       });
       navigate(influencerListUrl());
@@ -131,7 +131,7 @@ export const CustomerDetailsView: React.FC<CustomerDetailsViewProps> = ({
                       onClose={() => navigate(influencerUrl(id), true)}
                       onConfirm={() => removeCustomer()}
                       title={intl.formatMessage({
-                        defaultMessage: "Delete Customer",
+                        defaultMessage: "Delete influencer",
                         description: "dialog header"
                       })}
                       variant="delete"
@@ -140,7 +140,7 @@ export const CustomerDetailsView: React.FC<CustomerDetailsViewProps> = ({
                       <DialogContentText>
                         <FormattedMessage
                           defaultMessage="Are you sure you want to delete {email}?"
-                          description="delete customer, dialog content"
+                          description="delete influencer, dialog content"
                           values={{
                             email: (
                               <strong>
@@ -164,4 +164,4 @@ export const CustomerDetailsView: React.FC<CustomerDetailsViewProps> = ({
     </TypedRemoveCustomerMutation>
   );
 };
-export default CustomerDetailsView;
+export default InfluencerDetailsView;

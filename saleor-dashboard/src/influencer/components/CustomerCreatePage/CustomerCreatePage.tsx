@@ -25,6 +25,7 @@ export interface CustomerCreatePageFormData {
   customerLastName: string;
   email: string;
   note: string;
+  isInfluencer:boolean;
 }
 export interface CustomerCreatePageSubmitData
   extends CustomerCreatePageFormData {
@@ -39,6 +40,7 @@ const initialForm: CustomerCreatePageFormData & AddressTypeInput = {
   countryArea: "",
   customerFirstName: "",
   customerLastName: "",
+  isInfluencer:true,
   email: "",
   firstName: "",
   lastName: "",
@@ -93,6 +95,7 @@ const CustomerCreatePage: React.FC<CustomerCreatePageProps> = ({
       },
       customerFirstName: formData.customerFirstName,
       customerLastName: formData.customerLastName,
+      isInfluencer:formData.isInfluencer,
       email: formData.email,
       note: formData.note
     })
@@ -110,6 +113,7 @@ const CustomerCreatePage: React.FC<CustomerCreatePageProps> = ({
       "countryArea",
       "firstName",
       "lastName",
+      "isInfluencer",
       "phone",
       "postalCode",
       "streetAddress1",
@@ -125,6 +129,7 @@ const CustomerCreatePage: React.FC<CustomerCreatePageProps> = ({
         address: null,
         customerFirstName: formData.customerFirstName,
         customerLastName: formData.customerLastName,
+        isInfluencer:formData.isInfluencer,
         email: formData.email,
         note: formData.note
       });

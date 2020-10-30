@@ -1404,10 +1404,12 @@ export interface UserCreateInput {
   firstName?: string | null;
   lastName?: string | null;
   email?: string | null;
+  isInfluencer?: boolean| null;
   isActive?: boolean | null;
   note?: string | null;
   redirectUrl?: string | null;
 }
+
 
 export interface UserSortingInput {
   direction: OrderDirection;

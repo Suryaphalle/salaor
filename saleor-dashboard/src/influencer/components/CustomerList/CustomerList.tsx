@@ -70,7 +70,7 @@ const CustomerList: React.FC<CustomerListProps> = props => {
   } = props;
 
   const classes = useStyles(props);
-  console.log(influencers)
+  
   return (
     <ResponsiveTable>
       <TableHead
@@ -137,7 +137,6 @@ const CustomerList: React.FC<CustomerListProps> = props => {
           influencers,
           customer => {
             const isSelected = customer ? isChecked(customer.id) : false;
-
             return (
               <TableRow
                 className={!!customer ? classes.tableRow : undefined}

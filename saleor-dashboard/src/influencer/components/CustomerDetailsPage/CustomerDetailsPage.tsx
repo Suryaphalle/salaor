@@ -69,7 +69,7 @@ const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
       {({ change, data, hasChanged, submit }) => (
         <Container>
           <AppHeader onBack={onBack}>
-            {intl.formatMessage(sectionNames.customers)}
+            {intl.formatMessage(sectionNames.influencer)}
           </AppHeader>
           <PageHeader title={getUserName(customer, true)} />
           <Grid>
@@ -89,13 +89,13 @@ const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
                 onChange={change}
               />
               <CardSpacer />
-              <CustomerOrders
+              {/* <CustomerOrders
                 orders={maybe(() =>
                   customer.orders.edges.map(edge => edge.node)
                 )}
                 onViewAllOrdersClick={onViewAllOrdersClick}
                 onRowClick={onRowClick}
-              />
+              /> */}
             </div>
             <div>
               <CustomerAddresses
@@ -104,7 +104,7 @@ const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
                 onAddressManageClick={onAddressManageClick}
               />
               <CardSpacer />
-              <CustomerStats customer={customer} />
+              {/* <CustomerStats customer={customer} /> */}
             </div>
           </Grid>
           <SaveButtonBar

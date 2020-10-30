@@ -2,6 +2,9 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+// import {
+//   Checkbox
+// } from "@material-ui/core";
 import React from "react";
 import { useIntl } from "react-intl";
 
@@ -11,6 +14,10 @@ import { getFormErrors } from "@saleor/utils/errors";
 import { AccountErrorFragment } from "@saleor/customers/types/AccountErrorFragment";
 import getAccountErrorMessage from "@saleor/utils/errors/account";
 import { CustomerCreatePageFormData } from "../CustomerCreatePage";
+// import { isSelected } from "@saleor/utils/lists";
+import ControlledCheckbox from "@saleor/components/ControlledCheckbox";
+
+// import { CheckBox } from "@material-ui/icons";
 
 const useStyles = makeStyles(
   theme => ({
@@ -89,6 +96,15 @@ const CustomerCreateDetails: React.FC<CustomerCreateDetailsProps> = props => {
             helperText={getAccountErrorMessage(formErrors.email, intl)}
             type="email"
             value={data.email}
+            onChange={onChange}
+          />
+          <ControlledCheckbox
+            disabled={disabled}
+            label={intl.formatMessage({
+              defaultMessage: "Influencer"
+            })}
+            name="influencer"
+            checked={true}
             onChange={onChange}
           />
         </div>

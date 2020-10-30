@@ -11,11 +11,14 @@ import {
   InfluencerListUrlQueryParams,
   InfluencerListUrlSortField,
   influencerListPath,
+  influencerPath,
+  InfluencerUrlQueryParams,
 } from './urls'
 
 import InfluencerListViewComponent from "./views/InfluencerList";
 import InfluencerCreateView from "./views/InfluencerCreate";
-// import CustomerDetailsViewComponent from "./views/CustomerDetails";
+import InfluencerDetailsViewComponent from "./views/InfluencerDetails";
+
 
 const InfluencerListView: React.FC<RouteComponentProps<{}>> = ({ location }) => {
   const qs = parseQs(location.search.substr(1));
@@ -26,7 +29,22 @@ const InfluencerListView: React.FC<RouteComponentProps<{}>> = ({ location }) => 
 
   return <InfluencerListViewComponent params={params} />;
 };
+interface InfluencerDetailsRouteParams {
+  id: string;
+}
+const InfluencerDetailsView: React.FC<RouteComponentProps<
+  InfluencerDetailsRouteParams
+>> = ({ location, match }) => {
+  const qs = parseQs(location.search.substr(1));
+  const params: InfluencerUrlQueryParams = qs;
 
+  return (
+    <InfluencerDetailsViewComponent
+      id={decodeURIComponent(match.params.id)}
+      params={params}
+    />
+  );
+};
 export const InfluencerSection: React.FC<{}> = () => {
     const intl = useIntl();
   
@@ -37,7 +55,7 @@ export const InfluencerSection: React.FC<{}> = () => {
         <Route exact path={influencerListPath} component={InfluencerListView} />
         <Route exact path={influencerAddPath} component={InfluencerCreateView} />
         {/* <Route path={InfluencerAddressesPath(":id")} component={InfluencerAddressesView}/> */}
-        {/* <Route path={InfluencerPath(":id")} component={InfluencerDetailsView} /> */}
+        <Route path={influencerPath(":id")} component={InfluencerDetailsView} />
         </Switch>
       </>
     );
