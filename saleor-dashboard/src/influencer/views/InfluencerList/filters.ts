@@ -73,14 +73,14 @@ export function getFilterVariables(
       gte: params.joinedFrom,
       lte: params.joinedTo
     }),
-    moneySpent: getGteLteVariables({
-      gte: parseInt(params.moneySpentFrom, 0),
-      lte: parseInt(params.moneySpentTo, 0)
-    }),
-    numberOfOrders: getGteLteVariables({
-      gte: parseInt(params.numberOfOrdersFrom, 0),
-      lte: parseInt(params.numberOfOrdersTo, 0)
-    }),
+    // moneySpent: getGteLteVariables({
+    //   gte: parseInt(params.moneySpentFrom, 0),
+    //   lte: parseInt(params.moneySpentTo, 0)
+    // }),
+    // numberOfOrders: getGteLteVariables({
+    //   gte: parseInt(params.numberOfOrdersFrom, 0),
+    //   lte: parseInt(params.numberOfOrdersTo, 0)
+    // }),
     search: params.query
   };
 }

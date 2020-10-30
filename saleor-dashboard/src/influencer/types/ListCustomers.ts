@@ -8,10 +8,10 @@ import { InfluencerFilterInput, UserSortingInput } from "./../../types/globalTyp
 // GraphQL query operation: ListCustomers
 // ====================================================
 
-export interface ListCustomers_customers_edges_node_orders {
-  __typename: "OrderCountableConnection";
-  totalCount: number | null;
-}
+// export interface ListCustomers_customers_edges_node_orders {
+//   __typename: "OrderCountableConnection";
+//   totalCount: number | null;
+// }
 
 export interface ListCustomers_customers_edges_node {
   __typename: "User";
@@ -19,7 +19,7 @@ export interface ListCustomers_customers_edges_node {
   email: string;
   firstName: string;
   lastName: string;
-  orders: ListCustomers_customers_edges_node_orders | null;
+  // orders: ListCustomers_customers_edges_node_orders | null;
 }
 
 export interface ListCustomers_customers_edges {

@@ -9,8 +9,8 @@ import {
 
 export enum CustomerFilterKeys {
   joined = "joined",
-  moneySpent = "spent",
-  numberOfOrders = "orders"
+  // moneySpent = "spent",
+  // numberOfOrders = "orders"
 }
 
 export interface CustomerListFilterOpts {
@@ -24,13 +24,13 @@ const messages = defineMessages({
     defaultMessage: "Join Date",
     description: "customer"
   },
-  moneySpent: {
-    defaultMessage: "Money Spent",
-    description: "customer"
-  },
-  numberOfOrders: {
-    defaultMessage: "Number of Orders"
-  }
+  // moneySpent: {
+  //   defaultMessage: "Money Spent",
+  //   description: "customer"
+  // },
+  // numberOfOrders: {
+  //   defaultMessage: "Number of Orders"
+  // }
 });
 
 export function createFilterStructure(
@@ -46,21 +46,21 @@ export function createFilterStructure(
       ),
       active: opts.joined.active
     },
-    {
-      ...createNumberField(
-        CustomerFilterKeys.moneySpent,
-        intl.formatMessage(messages.moneySpent),
-        opts.moneySpent.value
-      ),
-      active: opts.moneySpent.active
-    },
-    {
-      ...createNumberField(
-        CustomerFilterKeys.numberOfOrders,
-        intl.formatMessage(messages.numberOfOrders),
-        opts.numberOfOrders.value
-      ),
-      active: opts.numberOfOrders.active
-    }
+    // {
+    //   ...createNumberField(
+    //     CustomerFilterKeys.moneySpent,
+    //     intl.formatMessage(messages.moneySpent),
+    //     opts.moneySpent.value
+    //   ),
+    //   active: opts.moneySpent.active
+    // },
+    // {
+    //   ...createNumberField(
+    //     CustomerFilterKeys.numberOfOrders,
+    //     intl.formatMessage(messages.numberOfOrders),
+    //     opts.numberOfOrders.value
+    //   ),
+    //   active: opts.numberOfOrders.active
+    // }
   ];
 }

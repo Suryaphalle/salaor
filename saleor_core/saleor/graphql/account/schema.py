@@ -18,7 +18,7 @@ from .deprecated.resolvers import resolve_service_accounts
 from .deprecated.sorters import ServiceAccountSortingInput
 from .deprecated.types import ServiceAccount, ServiceAccountFilterInput
 from .enums import CountryCodeEnum
-from .filters import CustomerFilter, PermissionGroupFilter, StaffUserFilter
+from .filters import CustomerFilter, PermissionGroupFilter, StaffUserFilter, InfluencerFilter
 from .mutations.account import (
     AccountAddressCreate,
     AccountAddressDelete,
@@ -65,6 +65,7 @@ from .resolvers import (
     resolve_address,
     resolve_address_validation_rules,
     resolve_customers,
+    resolve_influencers,
     resolve_permission_groups,
     resolve_staff_users,
     resolve_user,
@@ -76,6 +77,11 @@ from .types import Address, AddressValidationData, Group, User
 class CustomerFilterInput(FilterInputObjectType):
     class Meta:
         filterset_class = CustomerFilter
+
+
+class InfluencerFilterInput(FilterInputObjectType):
+    class Meta:
+        filterset_class = InfluencerFilter
 
 
 class PermissionGroupFilterInput(FilterInputObjectType):
@@ -117,6 +123,12 @@ class AccountQueries(graphene.ObjectType):
         filter=CustomerFilterInput(description="Filtering options for customers."),
         sort_by=UserSortingInput(description="Sort customers."),
         description="List of the shop's customers.",
+    )
+    influencers = FilterInputConnectionField(
+        User,
+        filter=InfluencerFilterInput(description="Filtering options for influecner."),
+        sort_by=UserSortingInput(description="Sort influecner."),
+        description="List of the shop's influecner.",
     )
     permission_groups = FilterInputConnectionField(
         Group,
@@ -190,6 +202,10 @@ class AccountQueries(graphene.ObjectType):
     @permission_required(AccountPermissions.MANAGE_USERS)
     def resolve_customers(self, info, query=None, **kwargs):
         return resolve_customers(info, query=query, **kwargs)
+
+    @permission_required(AccountPermissions.MANAGE_USERS)
+    def resolve_influencers(self, info, query=None, **kwargs):
+        return resolve_influencers(info, query=query, **kwargs)
 
     @permission_required(AccountPermissions.MANAGE_STAFF)
     def resolve_permission_groups(self, info, query=None, **kwargs):

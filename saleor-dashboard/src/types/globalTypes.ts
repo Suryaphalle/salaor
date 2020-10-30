@@ -965,10 +965,7 @@ export interface CustomerFilterInput {
   search?: string | null;
 }
 export interface InfluencerFilterInput {
-  dateJoined?: DateRangeInput | null;
-  // moneySpent?: PriceRangeInput | null;
-  // numberOfOrders?: IntRangeInput | null;
-  // placedOrders?: DateRangeInput | null;
+  dateJoined?: DateRangeInput | null; 
   search?: string | null;
 }
 

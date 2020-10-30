@@ -37,6 +37,13 @@ def resolve_customers(info, query, **_kwargs):
     )
     return qs.distinct()
 
+def resolve_influencers(info, query, **_kwargs):
+    qs = models.User.objects.influencer()
+    qs = filter_by_query_param(
+        queryset=qs, query=query, search_fields=USER_SEARCH_FIELDS
+    )
+    return qs.distinct()
+
 
 def resolve_permission_groups(info, **_kwargs):
     return auth_models.Group.objects.all()

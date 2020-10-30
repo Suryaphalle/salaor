@@ -123,7 +123,12 @@ class UserManager(BaseUserManager):
 
     def customers(self):
         return self.get_queryset().filter(
-            Q(is_staff=False) | (Q(is_staff=True) & Q(orders__isnull=False))
+            Q(is_staff=False) & Q(is_influencer=False) | (Q(is_staff=True) & Q(orders__isnull=False))
+        )
+    
+    def influencer(self):
+        return self.get_queryset().filter(
+            Q(is_staff=False) & Q(is_influencer=True) | (Q(is_staff=True) & Q(orders__isnull=False))
         )
 
     def staff(self):

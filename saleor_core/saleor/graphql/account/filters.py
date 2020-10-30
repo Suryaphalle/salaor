@@ -56,6 +56,7 @@ def filter_search(qs, _, value):
     return qs
 
 
+
 class CustomerFilter(django_filters.FilterSet):
     date_joined = ObjectTypeFilter(
         input_class=DateRangeInput, method=filter_date_joined
@@ -81,6 +82,19 @@ class CustomerFilter(django_filters.FilterSet):
             "search",
         ]
 
+
+class InfluencerFilter(django_filters.FilterSet):
+    date_joined = ObjectTypeFilter(
+        input_class=DateRangeInput, method=filter_date_joined
+    )
+    search = django_filters.CharFilter(method=filter_staff_search)
+
+    class Meta:
+        model = User
+        fields = [
+            "date_joined",
+            "search",
+        ]
 
 class PermissionGroupFilter(django_filters.FilterSet):
     search = django_filters.CharFilter(method=filter_search)

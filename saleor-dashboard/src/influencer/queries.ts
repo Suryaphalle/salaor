@@ -65,10 +65,10 @@ const customerList = gql`
     $before: String
     $first: Int
     $last: Int
-    $filter: CustomerFilterInput
+    $filter: InfluencerFilterInput
     $sort: UserSortingInput
   ) {
-    customers(
+    influencers(
       after: $after
       before: $before
       first: $first
@@ -79,9 +79,6 @@ const customerList = gql`
       edges {
         node {
           ...CustomerFragment
-          orders {
-            totalCount
-          }
         }
       }
       pageInfo {
