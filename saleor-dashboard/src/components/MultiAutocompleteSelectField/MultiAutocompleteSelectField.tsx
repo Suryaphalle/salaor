@@ -229,6 +229,7 @@ const MultiAutocompleteSelectField: React.FC<MultiAutocompleteSelectFieldProps> 
   const [query, setQuery] = React.useState("");
 
   if (fetchChoices) {
+    // console.log(choices)
     return (
       <DebounceAutocomplete debounceFn={fetchChoices}>
         {debounceFn => (

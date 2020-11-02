@@ -19,11 +19,13 @@ import useStateFromProps from "@saleor/hooks/useStateFromProps";
 import { sectionNames } from "@saleor/intl";
 import {
   getChoices,
+  getinfluencerChoices,
   ProductAttributeValueChoices,
   ProductType
 } from "@saleor/products/utils/data";
 import { SearchCategories_search_edges_node } from "@saleor/searches/types/SearchCategories";
 import { SearchCollections_search_edges_node } from "@saleor/searches/types/SearchCollections";
+import { SearchInfluencers_search_edges_node } from "@saleor/searches/types/SearchInfluencers";
 import { SearchProductTypes_search_edges_node_productAttributes } from "@saleor/searches/types/SearchProductTypes";
 import createMultiAutocompleteSelectHandler from "@saleor/utils/handlers/multiAutocompleteSelectChangeHandler";
 import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
@@ -72,12 +74,13 @@ interface ProductCreatePageProps {
   errors: ProductErrorFragment[];
   collections: SearchCollections_search_edges_node[];
   categories: SearchCategories_search_edges_node[];
-  infulencer: SearchCategories_search_edges_node[];
+  infulencer: SearchInfluencers_search_edges_node[];
   currency: string;
   disabled: boolean;
   fetchMoreCategories: FetchMoreProps;
   fetchMoreCollections: FetchMoreProps;
   fetchMoreProductTypes: FetchMoreProps;
+  fetchMoreInfluencers: FetchMoreProps;
   productTypes?: Array<{
     id: string;
     name: string;
@@ -90,6 +93,7 @@ interface ProductCreatePageProps {
   warehouses: SearchWarehouses_search_edges_node[];
   fetchCategories: (data: string) => void;
   fetchCollections: (data: string) => void;
+  fetchInfluencers: (data: string) => void;
   fetchProductTypes: (data: string) => void;
   onBack?();
   onSubmit?(data: ProductCreatePageSubmitData);
@@ -104,8 +108,10 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
   errors,
   fetchCategories,
   fetchCollections,
+  fetchInfluencers,
   fetchMoreCategories,
   fetchMoreCollections,
+  fetchMoreInfluencers,
   fetchMoreProductTypes,
   header,
   productTypes: productTypeChoiceList,
@@ -165,12 +171,16 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
   const [selectedCollections, setSelectedCollections] = useStateFromProps<
     MultiAutocompleteChoiceType[]
   >([]);
+  
+  const [selectedInfluencers, setSelectedInfluencers] = useStateFromProps<
+    MultiAutocompleteChoiceType[]
+  >([]);
 
   const [productType, setProductType] = React.useState<ProductType>(null);
 
   const categories = getChoices(categoryChoiceList);
   const collections = getChoices(collectionChoiceList);
-  const infulencer = getChoices(infulencerChoiceList);
+  const infulencer = getinfluencerChoices(infulencerChoiceList);
   const productTypes = getChoices(productTypeChoiceList);
 
   const handleSubmit = (data: FormData) =>
@@ -191,8 +201,8 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
         );
         const handleInfulencerSelect = createMultiAutocompleteSelectHandler(
           toggleValue,
-          setSelectedCollections,
-          selectedCollections,
+          setSelectedInfluencers,
+          selectedInfluencers,
           infulencer
         );
         const handleCategorySelect = createSingleAutocompleteSelectHandler(
@@ -321,8 +331,10 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
                   errors={errors}
                   fetchCategories={fetchCategories}
                   fetchCollections={fetchCollections}
+                  fetchInfluencers={fetchInfluencers}
                   fetchMoreCategories={fetchMoreCategories}
                   fetchMoreCollections={fetchMoreCollections}
+                  fetchMoreInfluencers={fetchMoreInfluencers}
                   fetchMoreProductTypes={fetchMoreProductTypes}
                   fetchProductTypes={fetchProductTypes}
                   productType={productType}
@@ -333,7 +345,7 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
                   onInfulencerChange={handleInfulencerSelect}
                   onProductTypeChange={handleProductTypeSelect}
                   collectionsInputDisplayValue={selectedCollections}
-                  infulencerInputDisplayValue={selectedCollections}
+                  infulencerInputDisplayValue={selectedInfluencers}
                 />
                 <CardSpacer />
                 <VisibilityCard

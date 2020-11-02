@@ -8,6 +8,8 @@ import useNotifier from "@saleor/hooks/useNotifier";
 import useShop from "@saleor/hooks/useShop";
 import useCategorySearch from "@saleor/searches/useCategorySearch";
 import useCollectionSearch from "@saleor/searches/useCollectionSearch";
+import useInfluencersSearch from "@saleor/searches/useInfluencersSearch";
+
 import useProductTypeSearch from "@saleor/searches/useProductTypeSearch";
 import { useWarehouseList } from "@saleor/warehouses/queries";
 import { decimal, maybe, weight } from "../../misc";
@@ -35,6 +37,13 @@ export const ProductCreateView: React.FC = () => {
     search: searchCollection,
     result: searchCollectionOpts
   } = useCollectionSearch({
+    variables: DEFAULT_INITIAL_SEARCH_DATA
+  });
+  const {
+    loadMore: loadMoreInfluencers,
+    search: searchInfluencers,
+    result: searchInfluencerOpts
+  } = useInfluencersSearch({
     variables: DEFAULT_INITIAL_SEARCH_DATA
   });
   const {
@@ -119,10 +128,15 @@ export const ProductCreateView: React.FC = () => {
                 () => searchCollectionOpts.data.search.edges,
                 []
               ).map(edge => edge.node)}
+              infulencer={maybe(
+                () => searchInfluencerOpts.data.search.edges,
+                []
+              ).map(edge => edge.node)}
               disabled={productCreateOpts.loading}
               errors={productCreateOpts.data?.productCreate.errors || []}
               fetchCategories={searchCategory}
               fetchCollections={searchCollection}
+              fetchInfluencers={searchInfluencers}
               fetchProductTypes={searchProductTypes}
               header={intl.formatMessage({
                 defaultMessage: "New Product",
@@ -147,6 +161,13 @@ export const ProductCreateView: React.FC = () => {
                 ),
                 loading: searchCollectionOpts.loading,
                 onFetchMore: loadMoreCollections
+              }}
+              fetchMoreInfluencers={{
+                hasMore: maybe(
+                  () => searchInfluencerOpts.data.search.pageInfo.hasNextPage
+                ),
+                loading: searchInfluencerOpts.loading,
+                onFetchMore: loadMoreInfluencers
               }}
               fetchMoreProductTypes={{
                 hasMore: maybe(

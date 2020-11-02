@@ -65,9 +65,13 @@ interface ProductOrganizationProps {
   productTypes?: SingleAutocompleteChoiceType[];
   fetchCategories: (query: string) => void;
   fetchCollections: (query: string) => void;
+  fetchInfluencers: (query: string) => void;
+
   fetchMoreCategories: FetchMoreProps;
   fetchMoreCollections: FetchMoreProps;
   fetchMoreProductTypes?: FetchMoreProps;
+  fetchMoreInfluencers: FetchMoreProps;
+ 
   fetchProductTypes?: (data: string) => void;
   onCategoryChange: (event: ChangeEvent) => void;
   onCollectionChange: (event: ChangeEvent) => void;
@@ -89,9 +93,11 @@ const ProductOrganization: React.FC<ProductOrganizationProps> = props => {
     errors,
     fetchCategories,
     fetchCollections,
+    fetchInfluencers,
     fetchMoreCategories,
     fetchMoreCollections,
     fetchMoreProductTypes,
+    fetchMoreInfluencers,
     fetchProductTypes,
     productType,
     productTypeInputDisplayValue,
@@ -209,7 +215,7 @@ const ProductOrganization: React.FC<ProductOrganizationProps> = props => {
         />
         <FormSpacer />
         <Hr />
-        <FormSpacer />
+        <FormSpacer />      
         <MultiAutocompleteSelectField
           displayValues={infulencerInputDisplayValue}
           error={!!formErrors.infulencer}
@@ -217,7 +223,7 @@ const ProductOrganization: React.FC<ProductOrganizationProps> = props => {
             defaultMessage: "Influnecer"
           })}
           choices={disabled ? [] : infulencer}
-          name="inflencer"
+          name="influencer"
           value={data.infulencer}
           helperText={
             getProductErrorMessage(formErrors.infulencer, intl) ||
@@ -228,8 +234,9 @@ const ProductOrganization: React.FC<ProductOrganizationProps> = props => {
             })
           }
           onChange={onInfulencerChange}
-          // fetchChoices={fetchCollections}
+          fetchChoices={fetchInfluencers}
           data-tc="infulencer"
+          {...fetchMoreInfluencers}
           
         />
       </CardContent>

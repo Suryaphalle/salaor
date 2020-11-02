@@ -27,6 +27,13 @@ interface Node {
   name: string;
 }
 
+
+interface InfNode {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
+
 export interface ProductType {
   hasVariants: boolean;
   id: string;
@@ -157,7 +164,20 @@ export function getCollectionInput(
   );
 }
 
+export function getinfluencerChoices(nodes: InfNode[]): SingleAutocompleteChoiceType[] {
+  console.log(nodes)
+  return maybe(
+    () =>
+      nodes.map(node => ({
+        label: `${node.firstName} ${node.lastName}`,
+        value: node.id
+      })),
+    []
+  );
+}
+
 export function getChoices(nodes: Node[]): SingleAutocompleteChoiceType[] {
+  console.log(nodes)
   return maybe(
     () =>
       nodes.map(node => ({
