@@ -9,7 +9,7 @@
 export interface SearchInfluencers_search_edges_node {
     __typename: "User";
     id: string;
-    fistName: string;
+    firstName: string;
     lastName: string;
     email: string;
   }

@@ -165,7 +165,6 @@ export function getCollectionInput(
 }
 
 export function getinfluencerChoices(nodes: InfNode[]): SingleAutocompleteChoiceType[] {
-  console.log(nodes)
   return maybe(
     () =>
       nodes.map(node => ({
@@ -177,7 +176,6 @@ export function getinfluencerChoices(nodes: InfNode[]): SingleAutocompleteChoice
 }
 
 export function getChoices(nodes: Node[]): SingleAutocompleteChoiceType[] {
-  console.log(nodes)
   return maybe(
     () =>
       nodes.map(node => ({

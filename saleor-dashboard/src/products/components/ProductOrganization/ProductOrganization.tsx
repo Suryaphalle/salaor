@@ -225,14 +225,6 @@ const ProductOrganization: React.FC<ProductOrganizationProps> = props => {
           choices={disabled ? [] : infulencer}
           name="influencer"
           value={data.infulencer}
-          helperText={
-            getProductErrorMessage(formErrors.infulencer, intl) ||
-            intl.formatMessage({
-              defaultMessage:
-                "*Optional. Adding product to collection helps users find it.",
-              description: "field is optional"
-            })
-          }
           onChange={onInfulencerChange}
           fetchChoices={fetchInfluencers}
           data-tc="infulencer"
